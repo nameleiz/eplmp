@@ -8,7 +8,7 @@
   * Contributors:
   *    DocDoku - initial API and implementation
   *******************************************************************************/
-package org.polarsys.eplmp.server.indexer;
+package org.polarsys.eplmp.server.indexer.config;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
@@ -20,21 +20,25 @@ import java.util.Properties;
  * @author Morgan Guimard
  */
 @ApplicationScoped
-public class IndexerConfigManager {
+public class IndexerConfig {
+
+    public static final String NUMBER_OF_SHARDS = "number_of_shards";
+    public static final String NUMBER_OF_REPLICAS = "number_of_replicas";
+    public static final String AUTO_EXPAND_REPLICAS = "auto_expand_replicas";
 
     @Resource(name = "elasticsearch.config")
     private Properties properties;
 
     public Integer getNumberOfShards(){
-        return Integer.parseInt(properties.getProperty("number_of_shards"));
+        return Integer.parseInt(properties.getProperty(NUMBER_OF_SHARDS));
     }
 
     public Integer getNumberOfReplicas(){
-        return Integer.parseInt(properties.getProperty("number_of_replicas"));
+        return Integer.parseInt(properties.getProperty(NUMBER_OF_REPLICAS));
     }
 
     public String getAutoExpandReplicas(){
-        return properties.getProperty("auto_expand_replicas");
+        return properties.getProperty(AUTO_EXPAND_REPLICAS);
     }
 
     public String getServerUri() {
